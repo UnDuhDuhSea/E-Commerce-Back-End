@@ -20,6 +20,8 @@ Product.belongsToMany(Tag, {
     model: ProductTag,
     unique: false,
   },
+  // through: ProductTag,
+  // foreignKey: "product_id",
 });
 // Tags belongToMany Products (through ProductTag)
 Tag.belongsToMany(Product, {
@@ -28,6 +30,8 @@ Tag.belongsToMany(Product, {
     model: ProductTag,
     unique: false,
   },
+  // through: ProductTag,
+  // foreignKey: "tag_id",
 });
 
 module.exports = {
