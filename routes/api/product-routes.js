@@ -30,16 +30,21 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   // find a single product by its `id`
   try {
-    const productData = await Tag.findByPk(req.params.id, {
-      // JOIN with travellers, using the Trip through table
-      include: [{ model: Tag, through: ProductTag, as: "tag_prods" }],
+    const productData = await Product.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [
+        {
+          model: Category,
+          attributes: ["category_name"],
+        },
+        {
+          model: Tag,
+          attributes: ["tag_name"],
+        },
+      ],
     });
-
-    if (!productData) {
-      res.status(404).json({ message: "No product found with this id!" });
-      return;
-    }
-
     res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
@@ -129,20 +134,20 @@ router.put("/:id", (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   // delete one product by its `id` value
-  // try {
-  //   const productData = await Tag.destroy({
-  //     where: {
-  //       id: req.params.id,
-  //     },
-  //   });
-  //   if (!productData) {
-  //     res.status(404).json({ message: "No tag found with this id!" });
-  //     return;
-  //   }
-  //   res.status(200).json(productData);
-  // } catch (err) {
-  //   res.status(500).json(err);
-  // }
+  try {
+    const productData = await Tag.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (!productData) {
+      res.status(404).json({ message: "No tag found with this id!" });
+      return;
+    }
+    res.status(200).json(productData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
