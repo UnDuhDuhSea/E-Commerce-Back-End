@@ -30,6 +30,8 @@ Please open up the terminal and follow these steps: `npm i` `npm run seed` and `
 
 Below is a video to follow for reference:
 
+https://youtu.be/Gd6gc0FTJhk
+
 ## License
 
 License:
