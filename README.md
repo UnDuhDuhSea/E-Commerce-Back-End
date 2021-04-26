@@ -6,7 +6,7 @@
 
 https://github.com/UnDuhDuhSea/E-Commerce-Back-End
 
-![E-Commerce-Back-End](imgs\E-commerce-Back-End.jpg)
+![E-Commerce-Back-End](imgs/E-commerce-Back-End.jpg)
 
 ## Description
 
